@@ -1,7 +1,11 @@
 const express = require('express');
 
+const authControllers = require('./controllers/auth');
+
 const PORT = 3000;
 const app = express();
+
+app.use('/auth', authControllers);
 
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
