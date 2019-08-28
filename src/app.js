@@ -1,11 +1,15 @@
 const express = require('express');
 
-const authControllers = require('./controllers/auth');
+const authController = require('./controllers/auth');
+
+const { httpLogger } = require('./middlewares');
+const { logger } = require('./utils');
 
 const PORT = 3000;
 const app = express();
 
-app.use('/auth', authControllers);
+app.use(httpLogger);
+app.use('/auth', authController);
 
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
@@ -13,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.listen({ port: PORT }, (err) => {
   if (err) {
-    return console.log(`App listening error  ${err}`);
+    return logger.error(`App listening error  ${err}`);
   }
-  console.log(`Server listening on port ${PORT}`);
+  logger.info(`Server listening on port ${PORT}`);
 });

@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/BagrijRoman/JWT-Server#readme",
   "dependencies": {
-    "nodemon": "^1.19.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
+    "winston": "^3.2.1"
   }
 }
