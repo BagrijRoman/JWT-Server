@@ -3,6 +3,7 @@
 
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
 import authController from './controllers/auth';
 
@@ -27,6 +28,7 @@ mongoose
   .then(() => logger.info(`Mongodb connected at ${MONGO_URI}`))
   .catch(err => logger.error(`Db connection error at ${MONGO_URI} \n Err details ${err}`));
 
+app.use(bodyParser.json());
 app.use(httpLogger);
 app.use('/auth', authController);
 app.get('/', (req, res) => {
