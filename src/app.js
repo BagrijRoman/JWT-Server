@@ -10,6 +10,7 @@ import authController from './controllers/auth';
 import {
   httpLogger,
   globalErrorHandler,
+  validationErrorHandler,
 } from './middlewares';
 
 import { logger } from './utils';
@@ -34,6 +35,7 @@ app.use('/auth', authController);
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
 });
+app.use(validationErrorHandler);
 app.use(globalErrorHandler);
 
 app.listen({ port: PORT }, (err) => {

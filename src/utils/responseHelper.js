@@ -14,6 +14,11 @@ class responseHelper {
       .status(httpStatus.FORBIDDEN)
       .send(messages.FORBIDDEN);
   }
+  static validationError(res, details = {}) {
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .json(details);
+  }
 }
 
 export default responseHelper;

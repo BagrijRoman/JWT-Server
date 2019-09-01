@@ -6,10 +6,11 @@ import refreshToken from './refreshToken';
 import changePassword from './changePassword';
 
 import { checkIsUnauthorized } from '../../middlewares';
+import { signUpValidator } from './validators';
 
 const setupAuthRoutes = (router) => {
   router.route('/sign-up')
-    .post(checkIsUnauthorized, signUp);
+    .post(checkIsUnauthorized, signUpValidator, signUp);
   router.route('/sign-in')
     .post(checkIsUnauthorized, signIn);
   router.route('/refresh')
