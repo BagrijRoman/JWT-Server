@@ -1,8 +1,14 @@
+// todo add 404 global handler
+
+
 import express from 'express';
 
 import authController from './controllers/auth';
 
-import { httpLogger } from './middlewares';
+import {
+  httpLogger,
+  globalErrorHandler,
+} from './middlewares';
 import { logger } from './utils';
 
 const PORT = 3000;
@@ -13,6 +19,7 @@ app.use('/auth', authController);
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
 });
+app.use(globalErrorHandler);
 
 app.listen({ port: PORT }, (err) => {
   if (err) {

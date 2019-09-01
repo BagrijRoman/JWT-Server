@@ -5,11 +5,13 @@ import signIn from './signIn';
 import refreshToken from './refreshToken';
 import changePassword from './changePassword';
 
+import { checkIsUnauthorized } from '../../middlewares';
+
 const setupAuthRoutes = (router) => {
   router.route('/sign-up')
-    .post(signUp);
+    .post(checkIsUnauthorized, signUp);
   router.route('/sign-in')
-    .post(signIn);
+    .post(checkIsUnauthorized, signIn);
   router.route('/refresh')
     .post(refreshToken);
   router.route('/change-password')
