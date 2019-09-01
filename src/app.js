@@ -1,7 +1,8 @@
-// todo add 404 global handler
 
+// todo add global 404 handler
 
 import express from 'express';
+import mongoose from 'mongoose';
 
 import authController from './controllers/auth';
 
@@ -9,10 +10,22 @@ import {
   httpLogger,
   globalErrorHandler,
 } from './middlewares';
+
 import { logger } from './utils';
 
-const PORT = 3000;
+const {
+  PORT = 3000,
+  MONGO_URI,
+} = process.env;
+
 const app = express();
+
+console.log('MONGO_URI ', MONGO_URI);
+
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true })
+  .then(() => logger.info(`Mongodb connected at ${MONGO_URI}`))
+  .catch(err => logger.error(`Db connection error at ${MONGO_URI} \n Err details ${err}`));
 
 app.use(httpLogger);
 app.use('/auth', authController);
