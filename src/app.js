@@ -1,16 +1,15 @@
-const express = require('express');
+import express from 'express';
 
-const authController = require('./controllers/auth');
+import authController from './controllers/auth';
 
-const { httpLogger } = require('./middlewares');
-const { logger } = require('./utils');
+import { httpLogger } from './middlewares';
+import { logger } from './utils';
 
 const PORT = 3000;
 const app = express();
 
 app.use(httpLogger);
 app.use('/auth', authController);
-
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
 });

@@ -1,9 +1,9 @@
-const router = require('express').Router();
+import express from 'express';
 
-const signUp = require('./signUp');
-const signIn = require('./signIn');
-const refreshToken = require('./refreshToken');
-const changePassword = require('./changePassword');
+import signUp from './signUp';
+import signIn from './signIn';
+import refreshToken from './refreshToken';
+import changePassword from './changePassword';
 
 const setupAuthRoutes = (router) => {
   router.route('/sign-up')
@@ -18,4 +18,4 @@ const setupAuthRoutes = (router) => {
   return router;
 };
 
-module.exports = setupAuthRoutes(router);
+export default setupAuthRoutes(express.Router());

@@ -1,5 +1,5 @@
-const httpLogger = require('./httpLogger');
+import httpLogger from './httpLogger';
 
-module.exports = {
+export {
   httpLogger,
-};
+}

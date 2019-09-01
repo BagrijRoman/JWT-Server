@@ -4,8 +4,8 @@
   "description": "Node/Express JWT server",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "nodemon --exec babel-node ./src",
+    "build": "babel src -d build"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,15 @@
   },
   "homepage": "https://github.com/BagrijRoman/JWT-Server#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.1",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
   }
 }

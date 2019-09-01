@@ -1,5 +1,5 @@
-const { createLogger, transports, format } = require('winston');
-const { logger: loggerConfigs } = require('../../configs');
+import { createLogger, transports, format } from 'winston';
+import { logger as loggerConfigs } from '../../configs';
 
 const {
   maxFiles,
@@ -25,4 +25,4 @@ const logger = createLogger({
   ]
 });
 
-module.exports = logger;
+export default logger;

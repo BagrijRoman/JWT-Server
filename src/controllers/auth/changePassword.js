@@ -2,4 +2,4 @@ const changePasswordController = (req, res) => {
   return res.send('changePasswordController');
 };
 
-module.exports = changePasswordController;
+export default changePasswordController;
