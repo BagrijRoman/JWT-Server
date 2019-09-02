@@ -25,7 +25,7 @@ const app = express();
 console.log('MONGO_URI ', MONGO_URI);
 
 mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true })
+  .connect(MONGO_URI, { useCreateIndex: true, useNewUrlParser: true })
   .then(() => logger.info(`Mongodb connected at ${MONGO_URI}`))
   .catch(err => logger.error(`Db connection error at ${MONGO_URI} \n Err details ${err}`));
 
