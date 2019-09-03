@@ -5,7 +5,11 @@ import signIn from './signIn';
 import refreshToken from './refreshToken';
 import changePassword from './changePassword';
 
-import { checkIsUnauthorized } from '../../middlewares';
+import {
+  checkIsUnauthorized,
+  checkAccessToken,
+  checkRefreshToken,
+} from '../../middlewares';
 import {
   signUpValidator,
   signInValidator,
@@ -18,16 +22,25 @@ const setupAuthRoutes = (router) => {
       signUpValidator,
       signUp
     );
+
   router.route('/sign-in')
     .post(
       checkIsUnauthorized,
       signInValidator,
       signIn
     );
+
   router.route('/refresh')
-    .post(refreshToken);
+    .post(
+      checkRefreshToken,
+      refreshToken
+    );
+
   router.route('/change-password')
-    .post(changePassword);
+    .post(
+      checkAccessToken,
+      changePassword
+    );
 
   return router;
 };
