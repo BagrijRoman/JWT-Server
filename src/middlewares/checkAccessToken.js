@@ -9,7 +9,7 @@ import { Users } from '../models';
 *
 * */
 
-const checkAuth = (req, res, next) => {
+const checkAuth = async (req, res, next) => {
   try {
 
     // todo add logic here
