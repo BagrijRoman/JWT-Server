@@ -22,8 +22,6 @@ const {
 
 const app = express();
 
-console.log('MONGO_URI ', MONGO_URI);
-
 mongoose
   .connect(MONGO_URI, { useCreateIndex: true, useNewUrlParser: true })
   .then(() => logger.info(`Mongodb connected at ${MONGO_URI}`))
