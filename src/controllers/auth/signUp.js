@@ -21,7 +21,6 @@ const signUpController = async (req, res, next) => {
 
     const passwordHash = await hashPassword(password);
     const newUser = await new Users({ name, email, password: passwordHash }).save();
-    const { _id } = newUser;
 
     return responseHelper.signIn(res, newUser.toObject());
   } catch (err) {
