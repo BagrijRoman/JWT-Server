@@ -23,7 +23,7 @@ const signUpController = async (req, res, next) => {
     const newUser = await new Users({ name, email, password: passwordHash }).save();
     const { _id } = newUser;
 
-    return responseHelper.signIn(res, newUser.toObject(), { _id, name, email });
+    return responseHelper.signIn(res, newUser.toObject());
   } catch (err) {
     logger.error(`signUpController:: ${err}`);
     next(err);

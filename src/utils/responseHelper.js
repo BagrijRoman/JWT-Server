@@ -13,10 +13,14 @@ class responseHelper {
   }
   static signIn(res, user, responseData = {}) {
     const { token, refreshToken } = generateTokens(user);
+    const { _id, name, email } = user;
     return res
       .status(httpStatus.OK)
       .json({
         ...responseData,
+        _id,
+        name,
+        email,
         token,
         refreshToken,
       });
@@ -35,6 +39,11 @@ class responseHelper {
     return res
       .status(httpStatus.BAD_REQUEST)
       .json(details);
+  }
+  static badRequest(res, message = '') {
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .send(message);
   }
 }
 
