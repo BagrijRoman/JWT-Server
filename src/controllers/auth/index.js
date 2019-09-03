@@ -15,6 +15,7 @@ import {
   signInValidator,
 } from './validators';
 
+
 const setupAuthRoutes = (router) => {
   router.route('/sign-up')
     .post(

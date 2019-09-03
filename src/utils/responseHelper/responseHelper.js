@@ -1,29 +1,15 @@
 import {
   httpStatus,
   messages,
-} from '../const';
+} from '../../const';
 
-import { generateTokens } from '../controllers/auth/utils';
+import { generateTokens } from './utils';
 
 class responseHelper {
   static created(res, data) {
     return res
       .status(httpStatus.CREATED)
       .json(data);
-  }
-  static signIn(res, user, responseData = {}) {
-    const { token, refreshToken } = generateTokens(user);
-    const { _id, name, email } = user;
-    return res
-      .status(httpStatus.OK)
-      .json({
-        ...responseData,
-        _id,
-        name,
-        email,
-        token,
-        refreshToken,
-      });
   }
   static internalServerError(res) {
     return res
@@ -44,6 +30,25 @@ class responseHelper {
     return res
       .status(httpStatus.BAD_REQUEST)
       .send(message);
+  }
+  static signIn(res, user, responseData = {}) {
+    const { token, refreshToken } = generateTokens(user);
+    const { _id, name, email } = user;
+    return res
+      .status(httpStatus.OK)
+      .json({
+        ...responseData,
+        _id,
+        name,
+        email,
+        token,
+        refreshToken,
+      });
+  }
+  static unauthorized(res) {
+    return res
+      .status(httpStatus.UNAUTHORIZED)
+      .send(messages.UNAUTHORIZED);
   }
 }
 
