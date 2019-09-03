@@ -13,8 +13,8 @@ import { tokenType as tokenTypes } from '../../const';
 
 const checkAuth = tokenType => async (req, res, next) => {
   try {
-
-    const decoded = validateAccessToken(req.header('Authorization'));
+    const validationFn = tokenType === tokenTypes.ACCESS ? validateAccessToken : validateRefreshToken;
+    const decoded = validationFn(req.header('Authorization'));
 
     if (!decoded || !decoded._id) {
       logger.info('Unauthorized');
@@ -33,7 +33,7 @@ const checkAuth = tokenType => async (req, res, next) => {
 
     return next();
   } catch (err) {
-    logger.error(`checkAuth  ${err}`);
+    logger.error(`checkAuth  tokenType ${tokenType}  ${err}`);
     next(err);
   }
 };
