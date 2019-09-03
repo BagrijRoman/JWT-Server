@@ -13,6 +13,7 @@ import {
 import {
   signUpValidator,
   signInValidator,
+  changePasswordValidator,
 } from './validators';
 
 
@@ -40,6 +41,7 @@ const setupAuthRoutes = (router) => {
   router.route('/change-password')
     .post(
       checkAccessToken,
+      changePasswordValidator,
       changePassword
     );
 
