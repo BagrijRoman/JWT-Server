@@ -6,13 +6,24 @@ import refreshToken from './refreshToken';
 import changePassword from './changePassword';
 
 import { checkIsUnauthorized } from '../../middlewares';
-import { signUpValidator } from './validators';
+import {
+  signUpValidator,
+  signInValidator,
+} from './validators';
 
 const setupAuthRoutes = (router) => {
   router.route('/sign-up')
-    .post(checkIsUnauthorized, signUpValidator, signUp);
+    .post(
+      checkIsUnauthorized,
+      signUpValidator,
+      signUp
+    );
   router.route('/sign-in')
-    .post(checkIsUnauthorized, signIn);
+    .post(
+      checkIsUnauthorized,
+      signInValidator,
+      signIn
+    );
   router.route('/refresh')
     .post(refreshToken);
   router.route('/change-password')
