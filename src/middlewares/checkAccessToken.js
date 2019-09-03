@@ -1,4 +1,5 @@
-import { logger } from '../utils';
+import { logger, responseHelper } from '../utils';
+import { Users } from '../models';
 
 /*
 * checkAuth  middleware
@@ -15,7 +16,7 @@ const checkAuth = (req, res, next) => {
 
   } catch (err) {
     logger.error(`checkIsUnauthorized  error: ${err}`);
-    throw err;
+    next(err);
   }
 };
 

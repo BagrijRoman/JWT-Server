@@ -1,12 +1,14 @@
 import httpLogger from './httpLogger';
-import checkAuth from './checkAuth';
+import checkAccessToken from './checkAccessToken';
+import checkRefreshToken from './checkRefreshToken';
 import checkIsUnauthorized from './checkIsUnAuthorized';
 import globalErrorHandler from './globalErrorHandler';
 import validationErrorHandler from './validationErrorHandler';
 
 export {
   httpLogger,
-  checkAuth,
+  checkAccessToken,
+  checkRefreshToken,
   checkIsUnauthorized,
   globalErrorHandler,
   validationErrorHandler,

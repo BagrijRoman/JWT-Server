@@ -1,4 +1,4 @@
-const changePasswordController = (req, res) => {
+const changePasswordController = async (req, res) => {
   return res.send('changePasswordController');
 };
 
