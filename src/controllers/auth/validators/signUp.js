@@ -1,4 +1,4 @@
-const { celebrate, Joi } = require('celebrate');
+import { celebrate, Joi } from 'celebrate';
 
 const signUpValidator = celebrate({
   body: Joi.object().keys({
