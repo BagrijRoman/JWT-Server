@@ -1,0 +1,39 @@
+{
+  "name": "jwt-server",
+  "version": "1.0.0",
+  "description": "Node/Express JWT server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ENV_TYPE='development' nodemon --exec babel-node ./src",
+    "start": "ENV_TYPE='production' nodemon --exec babel-node ./src",
+    "build": "babel src -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BagrijRoman/JWT-Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BagrijRoman/JWT-Server/issues"
+  },
+  "homepage": "https://github.com/BagrijRoman/JWT-Server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^10.0.1",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.11",
+    "morgan": "^1.9.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}
