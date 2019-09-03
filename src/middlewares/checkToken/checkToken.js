@@ -29,7 +29,7 @@ const checkAuth = tokenType => async (req, res, next) => {
       return responseHelper.unauthorized(res);
     }
 
-    req.user = user;
+    req.user = user.toObject();
 
     return next();
   } catch (err) {

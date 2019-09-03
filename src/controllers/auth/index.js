@@ -32,7 +32,7 @@ const setupAuthRoutes = (router) => {
     );
 
   router.route('/refresh')
-    .post(
+    .get(
       checkRefreshToken,
       refreshToken
     );
