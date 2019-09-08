@@ -11,7 +11,7 @@ import { tokenType as tokenTypes } from '../../const';
 *
 * */
 
-const checkAuth = tokenType => async (req, res, next) => {
+const checkToken = tokenType => async (req, res, next) => {
   try {
     const validationFn = tokenType === tokenTypes.ACCESS ? validateAccessToken : validateRefreshToken;
     const decoded = validationFn(req.header('Authorization'));
@@ -38,4 +38,4 @@ const checkAuth = tokenType => async (req, res, next) => {
   }
 };
 
-export default checkAuth;
+export default checkToken;
