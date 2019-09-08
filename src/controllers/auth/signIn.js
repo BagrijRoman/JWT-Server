@@ -21,7 +21,7 @@ const signInController = async (req, res, next) => {
       return responseHelper.badRequest(res, errorMessage);
     }
 
-    return responseHelper.signIn(res, user.toObject());
+    return responseHelper.sendTokens(res, user.toObject());
   } catch (err) {
     logger.error(`signInController  ${err}`);
     return next(err);
