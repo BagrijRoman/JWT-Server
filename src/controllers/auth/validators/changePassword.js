@@ -1,6 +1,6 @@
-const { celebrate, Joi } = require('celebrate');
+import { celebrate, Joi } from 'celebrate';
 
-const signUpValidator = celebrate({
+const changePasswordValidator = celebrate({
   body: Joi.object().keys({
     currentPassword:  Joi.string().min(6).max(20).required(),
     password:  Joi.string().min(6).max(20).required(),
@@ -8,4 +8,4 @@ const signUpValidator = celebrate({
   }),
 });
 
-export default signUpValidator;
+export default changePasswordValidator;

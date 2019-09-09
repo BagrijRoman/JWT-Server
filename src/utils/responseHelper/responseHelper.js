@@ -31,7 +31,7 @@ class responseHelper {
       .status(httpStatus.BAD_REQUEST)
       .send(message);
   }
-  static signIn(res, user, responseData = {}) {
+  static sendTokens(res, user, responseData = {}) {
     const { token, refreshToken } = generateTokens(user);
     const { _id, name, email } = user;
     return res

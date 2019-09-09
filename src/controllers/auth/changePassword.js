@@ -36,7 +36,7 @@ const changePasswordController = async (req, res, next) => {
       { new: true, useFindAndModify: false }
     );
 
-    return responseHelper.signIn(res, updatedUser.toObject());
+    return responseHelper.sendTokens(res, updatedUser.toObject());
   } catch (err) {
     logger.error(`changePasswordController ${err}`);
     next(err);
