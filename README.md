@@ -16,3 +16,9 @@ mongodb v3.2
 
 All environment variables stored in `.env.development` file. \
 To run app on production `.env.production` file should be configured.
+
+
+todo
+- allow cross origin requests for all only in dev mode
+- set cros request origins for production mode
+
