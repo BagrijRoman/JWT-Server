@@ -1,7 +1,9 @@
 const VALIDATION_ERROR = 'validationError';
 const VALID_EMAIL_SHOULD_BE_PROVIDED = 'validEmailShouldBeProvided';
+const PASSWORD_SHOULD_BE_FROM_SIX_TO_TWENTY_SYMBOLS = 'passwordShouldBeFrom6To20Symbols';
 
 export default {
   VALIDATION_ERROR,
   VALID_EMAIL_SHOULD_BE_PROVIDED,
+  PASSWORD_SHOULD_BE_FROM_SIX_TO_TWENTY_SYMBOLS,
 };
