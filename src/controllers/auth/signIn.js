@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import { Users } from '../../models';
 import { logger, responseHelper } from '../../utils';
 
+import { errors } from '../../const';
+
 const signInController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -11,14 +13,20 @@ const signInController = async (req, res, next) => {
 
     if (!user) {
       logger.error(`User with email: ${email} does not exists`);
-      return responseHelper.badRequest(res, errorMessage);
+      return responseHelper.validationError(res, {
+        type: errors.VALIDATION_ERROR,
+        details: { key: 'email', message: errors.USER_WITH_EMAIL_DOES_NOT_EXISTS },
+      });
     }
 
     const isPasswordsMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordsMatch) {
       logger.error(`Login with email ${email}: invalid password specified`);
-      return responseHelper.badRequest(res, errorMessage);
+      return responseHelper.validationError(res, {
+        type: errors.VALIDATION_ERROR,
+        details: { key: 'email', message: errors.INVALID_EMAIL_OR_PASSWORD_SPECIFIED },
+      });
     }
 
     return responseHelper.sendTokens(res, user.toObject());
