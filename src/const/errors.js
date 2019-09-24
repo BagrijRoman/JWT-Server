@@ -5,6 +5,7 @@ const USER_WITH_EMAIL_DOES_NOT_EXISTS = 'userWithEmailDoesNotExists';
 const INVALID_EMAIL_OR_PASSWORD_SPECIFIED = 'invalidEmailOrPasswordSpecified';
 const NAME_SHOULD_BE_FROM_THREE_TO_THIRTY_SYMBOLS = 'nameShouldBeFromThreeToThirtySymbols';
 const PASSWORD_CONFIRMATION_SHOULD_MATCH = 'passwordConfirmationShouldMatch';
+const EMAIL_ALREADY_IN_USE = 'emailAlreadyInUse';
 
 export default {
   VALIDATION_ERROR,
@@ -14,4 +15,5 @@ export default {
   INVALID_EMAIL_OR_PASSWORD_SPECIFIED,
   NAME_SHOULD_BE_FROM_THREE_TO_THIRTY_SYMBOLS,
   PASSWORD_CONFIRMATION_SHOULD_MATCH,
+  EMAIL_ALREADY_IN_USE,
 };

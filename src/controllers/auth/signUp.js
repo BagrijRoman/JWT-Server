@@ -2,6 +2,7 @@ import { logger } from '../../utils';
 import { Users } from '../../models';
 import { responseHelper } from '../../utils';
 import { hashPassword } from './utils';
+import { errors } from '../../const';
 
 const signUpController = async (req, res, next) => {
   try {
@@ -16,7 +17,11 @@ const signUpController = async (req, res, next) => {
     if (userByMail) {
       const message = 'Email already in use';
       logger.error(`signUpController:: ${message}: ${email}`);
-      return responseHelper.validationError(res, { message });
+
+      return responseHelper.validationError(res, {
+        type: errors.VALIDATION_ERROR,
+        details: { key: 'email', message: errors.EMAIL_ALREADY_IN_USE },
+      });
     }
 
     const passwordHash = await hashPassword(password);
