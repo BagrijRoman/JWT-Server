@@ -32,8 +32,9 @@ class responseHelper {
       .send(message);
   }
   static sendTokens(res, user, responseData = {}) {
-    const { token, refreshToken } = generateTokens(user);
     const { _id, name, email } = user;
+    const tokenPayload = { _id, name, email };
+    const { token, refreshToken } = generateTokens(tokenPayload);
     return res
       .status(httpStatus.OK)
       .json({
