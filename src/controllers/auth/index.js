@@ -4,16 +4,20 @@ import signUp from './signUp';
 import signIn from './signIn';
 import refreshToken from './refreshToken';
 import changePassword from './changePassword';
+import resetPasswordRequest from './restePasswordRequest';
+import resetPassword from './resetPassword';
 
 import {
   checkIsUnauthorized,
   checkAccessToken,
   checkRefreshToken,
+  checkUserEmail,
 } from '../../middlewares';
 import {
   signUpValidator,
   signInValidator,
   changePasswordValidator,
+  resetPasswordRequestValidator,
 } from './validators';
 
 
@@ -29,20 +33,38 @@ const setupAuthRoutes = (router) => {
     .post(
       checkIsUnauthorized,
       signInValidator,
-      signIn
+      signIn,
     );
 
   router.route('/refresh')
     .get(
       checkRefreshToken,
-      refreshToken
+      refreshToken,
     );
 
   router.route('/change-password')
     .post(
       checkAccessToken,
       changePasswordValidator,
-      changePassword
+      changePassword,
+    );
+
+  router.route('/reset-password-request')
+    .post(
+      resetPasswordRequestValidator,
+      checkUserEmail,
+
+      // check existing reset password tokens
+      // generate reset password token
+      resetPasswordRequest,
+    );
+
+  router.route('/reset-password')
+    .post(
+      // validate provided passwords data
+      // check provided reset password token
+      // change password and mark token as used
+      resetPassword,
     );
 
   return router;

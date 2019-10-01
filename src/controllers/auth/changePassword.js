@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { responseHelper, logger } from '../../utils';
 import { hashPassword } from './utils';
 import { Users } from '../../models';
+import { errors } from '../../const';
 
 const changePasswordController = async (req, res, next) => {
   try {
@@ -22,12 +23,20 @@ const changePasswordController = async (req, res, next) => {
 
     if (!isPasswordsMatch) {
       logger.error(`changePasswordController  Invalid password specified.  userId ${_id}`);
-      return responseHelper.badRequest(res, 'Invalid password specified');
+      return responseHelper.badRequest(
+        res,
+        errors.INVALID_EMAIL_OR_PASSWORD_SPECIFIED,
+        'Invalid password specified'
+      );
     }
 
     if (newPassword === currentPassword) {
       logger.error(`changePasswordController  Password must be different with a prev one.  userId ${_id}`);
-      return responseHelper.badRequest(res, 'Password must be different with a prev one');
+      return responseHelper.badRequest(
+        res,
+        errors.PASSWORD_MUST_BE_DIFFERENT_WITH_PREV_ONE,
+        'Password must be different with a prev one'
+      );
     }
 
     const updatedUser = await Users.findByIdAndUpdate(

@@ -5,6 +5,7 @@ import checkToken from './checkToken';
 import checkIsUnauthorized from './checkIsUnAuthorized';
 import globalErrorHandler from './globalErrorHandler';
 import validationErrorHandler from './validationErrorHandler';
+import checkUserEmail from './checkUserEmail';
 
 const checkAccessToken = checkToken(tokenType.ACCESS);
 const checkRefreshToken = checkToken(tokenType.REFRESH);
@@ -16,4 +17,5 @@ export {
   checkIsUnauthorized,
   globalErrorHandler,
   validationErrorHandler,
+  checkUserEmail,
 }
