@@ -5,7 +5,16 @@ const resetPasswordRequestsSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
   },
+  token: {
+    type: String,
+    required: true,
+  },
   used: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  disabled: {
     type: Boolean,
     required: true,
     default: false,
