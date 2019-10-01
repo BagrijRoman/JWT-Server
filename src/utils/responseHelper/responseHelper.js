@@ -26,10 +26,10 @@ class responseHelper {
       .status(httpStatus.BAD_REQUEST)
       .json(details);
   }
-  static badRequest(res, message = '') {
+  static badRequest(res, errorKey, details = '') {  // todo refactor all response helpers with using errorKey
     return res
       .status(httpStatus.BAD_REQUEST)
-      .send(message);
+      .json({ errorKey, details });
   }
   static sendTokens(res, user, responseData = {}) {
     const { _id, name, email } = user;

@@ -11,6 +11,7 @@ import {
   checkIsUnauthorized,
   checkAccessToken,
   checkRefreshToken,
+  checkUserEmail,
 } from '../../middlewares';
 import {
   signUpValidator,
@@ -51,7 +52,8 @@ const setupAuthRoutes = (router) => {
   router.route('/reset-password-request')
     .post(
       resetPasswordRequestValidator,
-      // validate email
+      checkUserEmail,
+
       // check existing reset password tokens
       // generate reset password token
       resetPasswordRequest,
