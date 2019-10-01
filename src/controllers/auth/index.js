@@ -16,6 +16,7 @@ import {
   signUpValidator,
   signInValidator,
   changePasswordValidator,
+  resetPasswordRequestValidator,
 } from './validators';
 
 
@@ -49,6 +50,7 @@ const setupAuthRoutes = (router) => {
 
   router.route('/reset-password-request')
     .post(
+      resetPasswordRequestValidator,
       // validate email
       // check existing reset password tokens
       // generate reset password token
