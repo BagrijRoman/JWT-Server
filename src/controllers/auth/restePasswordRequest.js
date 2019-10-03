@@ -1,10 +1,13 @@
 import { logger, responseHelper } from '../../utils';
-import { disableResetPasswordTokensForUser } from './utils';
+import { ResetPasswordRequests } from '../../models';
 
 const resetPasswordRequestController = async (req, res, next) => {
   try {
     const { _id: userId } = req.user;
-    await disableResetPasswordTokensForUser(userId);
+    const modifiedRecordsCount = await ResetPasswordRequests.disableAllUserRequests(userId);
+
+
+
 
     // generate token
     // add it to database

@@ -19,9 +19,10 @@ const resetPasswordRequestsSchema = new Schema({
     required: true,
     default: false,
   },
-  expiredAt: {
-    type: Date,
+  passwordChanged: {
+    type: Boolean,
     required: true,
+    default: false,
   },
 }, { timestamps: true });
 
