@@ -1,11 +1,7 @@
-const INTERNAL_SERVER_ERROR = 'Internal server error';
-const FORBIDDEN = 'Forbidden';
-const UNAUTHORIZED = 'Unauthorized';
+const RESET_PASSWORD_LINK_SEND_TO_YOUR_EMAIL = 'resetPasswordLinkSendToYourEmail';
 
 const messages = {
-  INTERNAL_SERVER_ERROR,
-  FORBIDDEN,
-  UNAUTHORIZED,
+  RESET_PASSWORD_LINK_SEND_TO_YOUR_EMAIL,
 };
 
 export default messages;
