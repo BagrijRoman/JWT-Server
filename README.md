@@ -21,4 +21,5 @@ To run app on production `.env.production` file should be configured.
 todo
 - allow cross origin requests for all only in dev mode
 - set cros request origins for production mode
+- add sending errorKey for global error handler
 

@@ -1,7 +1,5 @@
-import {
-  logger,
-  responseHelper,
-} from '../utils';
+import { responseHelper } from '../services';
+import { logger } from '../utils';
 
 /*
 * checkIsUnauthorized  middleware

@@ -3,9 +3,31 @@ import {
   messages,
 } from '../../const';
 
+/*
+* Response structure
+* {
+*   success: boolean
+*   data: Object
+*
+*   error: boolean
+*   details: { key }
+*
+*   msgKey,
+* }
+* */
+
 import { generateTokens } from './utils';
 
 class responseHelper {
+  static success(res, msgKey, data = {}) {
+    return res
+      .status(httpStatus.OK)
+      .json({ success: true, msgKey, data });
+  }
+
+  // todo unify all response structure
+
+
   static created(res, data) {
     return res
       .status(httpStatus.CREATED)

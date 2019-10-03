@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 
-import { responseHelper, logger } from '../../utils';
+import { responseHelper } from '../../services';
+import { logger } from '../../utils';
 import { hashPassword } from './utils';
 import { Users } from '../../models';
 import { errors } from '../../const';

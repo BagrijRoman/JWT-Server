@@ -1,5 +1,6 @@
+import { responseHelper } from '../../services';
 import { Users } from '../../models';
-import { logger, responseHelper } from '../../utils';
+import { logger } from '../../utils';
 import { validateAccessToken, validateRefreshToken } from './utils';
 import { tokenType as tokenTypes } from '../../const';
 

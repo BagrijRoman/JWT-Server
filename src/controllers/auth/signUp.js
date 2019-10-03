@@ -1,6 +1,6 @@
+import { responseHelper } from '../../services';
 import { logger } from '../../utils';
 import { Users } from '../../models';
-import { responseHelper } from '../../utils';
 import { hashPassword } from './utils';
 import { errors } from '../../const';
 

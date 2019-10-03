@@ -1,4 +1,5 @@
-import { responseHelper, logger } from '../../utils';
+import { responseHelper } from '../../services';
+import { logger } from '../../utils';
 
 const refreshTokenController = (req, res, next) => {
   try {

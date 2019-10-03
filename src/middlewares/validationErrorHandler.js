@@ -1,4 +1,4 @@
-import { responseHelper } from '../utils';
+import { responseHelper } from '../services';
 import { errors } from '../const';
 
 const validationErrorHandler = (err, req, res, next) => {
