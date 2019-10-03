@@ -11,5 +11,9 @@ resetPasswordRequestsSchema.statics.disableAllUserRequests = async function (use
   return nModified;
 };
 
+resetPasswordRequestsSchema.statics.addRequest = async function (userId, token) {
+  return this.create({ userId, token });
+};
+
 
 export default model('resetPasswordRequests', resetPasswordRequestsSchema);

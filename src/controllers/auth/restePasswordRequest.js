@@ -1,4 +1,5 @@
-import { logger, responseHelper } from '../../utils';
+import { responseHelper } from '../../services';
+import { logger } from '../../utils';
 import { ResetPasswordRequests } from '../../models';
 import { generateResetPasswordToken } from './utils';
 
@@ -7,6 +8,11 @@ const resetPasswordRequestController = async (req, res, next) => {
     const { _id: userId } = req.user;
     const modifiedRecordsCount = await ResetPasswordRequests.disableAllUserRequests(userId);
     const token = generateResetPasswordToken(userId);
+    const request = await ResetPasswordRequests.addRequest(userId, token);
+
+    logger.info(`New reset password request was created  userId: ${userId}, requestId: ${request._id}`);
+
+    // send mail notification
 
 
 
@@ -14,8 +20,10 @@ const resetPasswordRequestController = async (req, res, next) => {
 
 
 
-    // generate token
-    // add it to database
+
+
+
+
     // send mail notification
     // send success: true
     // possible msgKey

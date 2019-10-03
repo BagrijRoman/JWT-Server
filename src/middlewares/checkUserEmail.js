@@ -1,6 +1,7 @@
 import R from 'ramda';
 
-import { logger, responseHelper } from '../utils';
+import { responseHelper } from '../services';
+import { logger } from '../utils';
 import { Users } from '../models';
 import { errors } from '../const';
 
