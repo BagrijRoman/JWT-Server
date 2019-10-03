@@ -1,10 +1,15 @@
 import { logger, responseHelper } from '../../utils';
 import { ResetPasswordRequests } from '../../models';
+import { generateResetPasswordToken } from './utils';
 
 const resetPasswordRequestController = async (req, res, next) => {
   try {
     const { _id: userId } = req.user;
     const modifiedRecordsCount = await ResetPasswordRequests.disableAllUserRequests(userId);
+    const token = generateResetPasswordToken(userId);
+
+
+
 
 
 
