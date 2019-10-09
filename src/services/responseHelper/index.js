@@ -1,3 +1,1 @@
-import responseHelper from './responseHelper';
-
-export default responseHelper;
+export { ResponseHelper } from './responseHelper';

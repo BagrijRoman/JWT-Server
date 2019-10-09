@@ -1,4 +1,4 @@
-class mailService {
+class MailService {
   constructor() {
 
   }
@@ -16,4 +16,4 @@ class mailService {
 
 }
 
-export { mailService };
+export { MailService };
