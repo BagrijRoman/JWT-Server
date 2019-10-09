@@ -1,5 +1,5 @@
 import {
-  notificationMessageKeys as messages,
+  messages,
   errors,
   httpStatus,
 } from '../../const';
@@ -17,15 +17,23 @@ import {
 * */
 
 class ResponseHelper {
+  constructor(config) {
+    const { encryptionHelper } = config;
+
+    this.encryptionHelper = encryptionHelper;
+  }
+
   success = (res) => {
 
   };
 
   sendTokens = (res, userData) => {
     const { _id, email } = userData;
-    const tokens = encryptionHelper.generateTokens({ _id: _id.toString(), email });
+    const userDataNormalized = {...userData}.delete('password');
+
+    const tokens = this.encryptionHelper.generateTokens({ _id: _id.toString(), email });
     res.status(httpStatus.OK).json({
-      data: { userData },
+      data: userDataNormalized,
       ...tokens,
     });
   };
