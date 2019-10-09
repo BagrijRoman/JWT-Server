@@ -1,3 +1,1 @@
-import mailService from './mailService';
-
-export default mailService;
+export { mailService } from './mailService';

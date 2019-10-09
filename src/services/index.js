@@ -1,5 +1,7 @@
 import responseHelper from './responseHelper';
-import mailService from './mailService';
+import { mailService as mail } from './mailService';
+
+const mailService = new mailService();
 
 export {
   responseHelper,
