@@ -19,7 +19,6 @@ To run app on production `.env.production` file should be configured.
 
 
 todo
-- update global error handler
 - update validation error handler
 - update user model methods - daa crete user with usage of encryption module
 - add usage of encryption module for sign in
