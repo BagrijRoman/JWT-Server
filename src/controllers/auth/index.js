@@ -2,7 +2,7 @@ import express from 'express';
 
 import { signUpController } from './signUp';
 import { signInController } from './signIn';
-import refreshToken from './refreshToken';
+import { refreshTokenController } from './refreshToken';
 import changePassword from './changePassword';
 import resetPasswordRequest from './restePasswordRequest';
 import resetPassword from './resetPassword';
@@ -39,7 +39,7 @@ const setupAuthRoutes = (router) => {
   router.route('/refresh')
     .get(
       checkRefreshToken,
-      refreshToken,
+      refreshTokenController,
     );
 
   router.route('/change-password')
