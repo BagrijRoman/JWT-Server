@@ -1,31 +1,20 @@
 import { responseHelper } from '../../services';
 import { logger } from '../../utils';
 import { Users } from '../../models';
-import { hashPassword } from './utils';
 import { errors } from '../../const';
 
-const signUpController = async (req, res, next) => {
+export const signUpController = async (req, res, next) => {
   try {
-    const {
-      name,
-      email,
-      password,
-    } = req.body;
+    const { name, email, password } = req.body;
 
-    const userByMail = await Users.findOne({ email });
+    const userByMail = await Users.findUserByEmail(email);
 
     if (userByMail) {
-      const message = 'Email already in use';
-      logger.error(`signUpController:: ${message}: ${email}`);
-
-      return responseHelper.validationError(res, {
-        type: errors.VALIDATION_ERROR,
-        details: { key: 'email', message: errors.EMAIL_ALREADY_IN_USE },
-      });
+      logger.info(`signUpController:: user with mail already exists. email: ${email}`);
+      return responseHelper.badRequest(res, errors.EMAIL_ALREADY_IN_USE, { key: 'email' });
     }
 
-    const passwordHash = await hashPassword(password);
-    const newUser = await Users.create({ name, email, password: passwordHash });
+    const newUser = await Users.addNewUser({ name, email, password });
 
     return responseHelper.sendTokens(res, newUser.toObject());
   } catch (err) {
@@ -33,5 +22,3 @@ const signUpController = async (req, res, next) => {
     next(err);
   }
 };
-
-export default signUpController;

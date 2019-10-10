@@ -1,6 +1,4 @@
-
-
-class mailService {
+class MailService {
   constructor() {
 
   }
@@ -10,7 +8,7 @@ class mailService {
 
   };
 
-  resetPasswordLinkNotification(mailTo, link) {
+  resetPasswordLinkNotification = (mailTo, link) => {
     console.log('resetPasswordLinkNotification');
     console.log('mailTo ', mailTo);
     console.log('link ', link);
@@ -18,4 +16,4 @@ class mailService {
 
 }
 
-export default new mailService();
+export { MailService };

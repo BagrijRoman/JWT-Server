@@ -1,13 +1,11 @@
 import { responseHelper } from '../../services';
 import { logger } from '../../utils';
 
-const refreshTokenController = (req, res, next) => {
+export const refreshTokenController = (req, res, next) => {
   try {
     return responseHelper.sendTokens(res, req.user);
   } catch (err) {
-    logger.error(`refreshTokenController ${err}`);
+    logger.error(`refreshTokenController:: error details ${err.toString()}`);
     next(err);
   }
 };
-
-export default refreshTokenController;

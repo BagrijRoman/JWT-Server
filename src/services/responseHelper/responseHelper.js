@@ -1,78 +1,70 @@
 import {
-  httpStatus,
   messages,
+  errors,
+  httpStatus,
 } from '../../const';
 
 /*
-* Response structure
-* {
-*   success: boolean
-*   data: Object
+* response structure
 *
-*   error: boolean
-*   details: { key }
+*   {
+*     err: boolean
+*     success: boolean
+*     data: {}  - object with response data,
+*     msgKey: string  - message key which will be interpreted on client
+*   }
 *
-*   msgKey,
-* }
 * */
 
-import { generateTokens } from './utils';
+class ResponseHelper {
+  constructor(config) {
+    const { encryptionHelper } = config;
 
-class responseHelper {
-  static success(res, msgKey, data = {}) {
-    return res
-      .status(httpStatus.OK)
-      .json({ success: true, msgKey, data });
+    this.encryptionHelper = encryptionHelper;
   }
 
-  // todo unify all response structure
+  success = (res, msgKey = messages.SUCCESS, data = {}) => res.status(httpStatus.OK).json({
+    success: true,
+    data,
+    msgKey,
+  });
 
+  sendTokens = (res, userData) => {
+    const { _id, email } = userData;
+    const userDataNormalized = {...userData}.delete('password');
 
-  static created(res, data) {
-    return res
-      .status(httpStatus.CREATED)
-      .json(data);
-  }
-  static internalServerError(res) {
-    return res
-      .status(httpStatus.INTERNAL_SERVER_ERROR)
-      .send(messages.INTERNAL_SERVER_ERROR);
-  }
-  static forbidden(res) {
-    return res
-      .status(httpStatus.FORBIDDEN)
-      .send(messages.FORBIDDEN);
-  }
-  static validationError(res, details = {}) {
-    return res
-      .status(httpStatus.BAD_REQUEST)
-      .json(details);
-  }
-  static badRequest(res, errorKey, details = '') {  // todo refactor all response helpers with using errorKey
-    return res
-      .status(httpStatus.BAD_REQUEST)
-      .json({ errorKey, details });
-  }
-  static sendTokens(res, user, responseData = {}) {
-    const { _id, name, email } = user;
-    const tokenPayload = { _id, name, email };
-    const { token, refreshToken } = generateTokens(tokenPayload);
-    return res
-      .status(httpStatus.OK)
-      .json({
-        ...responseData,
-        _id,
-        name,
-        email,
-        token,
-        refreshToken,
-      });
-  }
-  static unauthorized(res) {
-    return res
-      .status(httpStatus.UNAUTHORIZED)
-      .send(messages.UNAUTHORIZED);
-  }
+    const tokens = this.encryptionHelper.generateTokens({ _id: _id.toString(), email });
+    res.status(httpStatus.OK).json({
+      data: userDataNormalized,
+      ...tokens,
+    });
+  };
+
+  unauthorized = (res, msgKey = errors.UNAUTHORIZED, data = {}) =>
+    res.status(httpStatus.UNAUTHORIZED).json({
+      error: true,
+      msgKey,
+      data,
+    });
+
+  forbidden = (res, msgKey = errors.OPERATION_IS_FORBIDDEN_FOR_SOME_REASONS, data = {}) =>
+    res.status(httpStatus.FORBIDDEN).json({
+      error: true,
+      msgKey,
+      data
+    });
+
+  badRequest = (res, msgKey, data = {}) => res.status(httpStatus.BAD_REQUEST).json({
+    error: true,
+    msgKey,
+    data,
+  });
+
+  internalServerError = (res, data = {}) => res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+    error: true,
+    msgKey: errors.INTERNAL_SERVER_ERROR,
+    data
+  });
 }
 
-export default responseHelper;
+export { ResponseHelper };

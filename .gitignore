@@ -3,3 +3,6 @@
 node_modules
 build
 logs
+
+.env.development
+.env.production

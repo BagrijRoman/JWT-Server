@@ -1,10 +1,10 @@
 import express from 'express';
 
-import signUp from './signUp';
-import signIn from './signIn';
-import refreshToken from './refreshToken';
-import changePassword from './changePassword';
-import resetPasswordRequest from './restePasswordRequest';
+import { signUpController } from './signUp';
+import { signInController } from './signIn';
+import { refreshTokenController } from './refreshToken';
+import { changePasswordController } from './changePassword';
+import { resetPasswordRequestController } from './restePasswordRequest';
 import resetPassword from './resetPassword';
 
 import {
@@ -26,37 +26,34 @@ const setupAuthRoutes = (router) => {
     .post(
       checkIsUnauthorized,
       signUpValidator,
-      signUp
+      signUpController,
     );
 
   router.route('/sign-in')
     .post(
       checkIsUnauthorized,
       signInValidator,
-      signIn,
+      signInController,
     );
 
   router.route('/refresh')
     .get(
       checkRefreshToken,
-      refreshToken,
+      refreshTokenController,
     );
 
   router.route('/change-password')
     .post(
       checkAccessToken,
       changePasswordValidator,
-      changePassword,
+      changePasswordController,
     );
 
   router.route('/reset-password-request')
     .post(
       resetPasswordRequestValidator,
       checkUserEmail,
-
-      // check existing reset password tokens
-      // generate reset password token
-      resetPasswordRequest,
+      resetPasswordRequestController,
     );
 
   router.route('/reset-password')

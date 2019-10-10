@@ -1,40 +1,28 @@
-import bcrypt from 'bcryptjs';
-
-import { responseHelper } from '../../services';
+import { responseHelper, encryptionHelper } from '../../services';
 import { Users } from '../../models';
 import { logger } from '../../utils';
-
 import { errors } from '../../const';
 
-const signInController = async (req, res, next) => {
+export const signInController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await Users.findOne({ email });
-    const errorMessage = 'Invalid password or user does not exists';
+    const user = await Users.findUserByEmail(email);
 
     if (!user) {
-      logger.error(`User with email: ${email} does not exists`);
-      return responseHelper.validationError(res, {
-        type: errors.VALIDATION_ERROR,
-        details: { key: 'email', message: errors.USER_WITH_EMAIL_DOES_NOT_EXISTS },
-      });
+      logger.info(`signInController:: invalid email provided. Details email: ${email}`);
+      return responseHelper.badRequest(res, errors.USER_WITH_EMAIL_DOES_NOT_EXISTS, { key: 'email' });
     }
 
-    const isPasswordsMatch = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await encryptionHelper.verifyPassword(password, user.password);
 
-    if (!isPasswordsMatch) {
-      logger.error(`Login with email ${email}: invalid password specified`);
-      return responseHelper.validationError(res, {
-        type: errors.VALIDATION_ERROR,
-        details: { key: 'email', message: errors.INVALID_EMAIL_OR_PASSWORD_SPECIFIED },
-      });
+    if (!isPasswordValid) {
+      logger.info(`signInController:: invalid password provided. Details email: ${email}  password: ${password}`);
+      return responseHelper.badRequest(res, errors.INVALID_PASSWORD_SPECIFIED, { key: 'password' });
     }
 
     return responseHelper.sendTokens(res, user.toObject());
   } catch (err) {
-    logger.error(`signInController  ${err}`);
+    logger.error(`signInController:: error details ${err.toString()}`);
     return next(err);
   }
 };
-
-export default signInController;

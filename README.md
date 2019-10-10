@@ -19,7 +19,10 @@ To run app on production `.env.production` file should be configured.
 
 
 todo
-- allow cross origin requests for all only in dev mode
-- set cros request origins for production mode
-- add sending errorKey for global error handler
-
+- finish refactoring of midlewares
+- finish reset password related functionality
+- add google auth
+- add facebook auth
+- add linkedin auth
+- add users module or social auth (if it will be necessary)
+- add global 404 handler

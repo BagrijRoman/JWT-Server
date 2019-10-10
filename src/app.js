@@ -1,6 +1,3 @@
-
-// todo add global 404 handler
-
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -18,17 +15,18 @@ import { logger } from './utils';
 
 const {
   PORT = 3000,
-  MONGO_URI,
+  MONGO_URL,
+  ACCESS_CONTROL_ALLOW_ORIGIN_VALUE
 } = process.env;
 
 const app = express();
 
 mongoose
-  .connect(MONGO_URI, { useCreateIndex: true, useNewUrlParser: true })
-  .then(() => logger.info(`Mongodb connected at ${MONGO_URI}`))
-  .catch(err => logger.error(`Db connection error at ${MONGO_URI} \n Err details ${err}`));
+  .connect(MONGO_URL, { useCreateIndex: true, useNewUrlParser: true })
+  .then(() => logger.info(`Mongodb connected at ${MONGO_URL}`))
+  .catch(err => logger.error(`Db connection error at ${MONGO_URL} \n Err details ${err}`));
 
-app.use(cors());
+app.use(cors({ origin: ACCESS_CONTROL_ALLOW_ORIGIN_VALUE }));
 app.use(bodyParser.json());
 app.use(httpLogger);
 app.use('/auth', authController);
