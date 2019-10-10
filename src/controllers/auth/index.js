@@ -1,7 +1,7 @@
 import express from 'express';
 
 import signUp from './signUp';
-import signIn from './signIn';
+import { signInController } from './signIn';
 import refreshToken from './refreshToken';
 import changePassword from './changePassword';
 import resetPasswordRequest from './restePasswordRequest';
@@ -33,7 +33,7 @@ const setupAuthRoutes = (router) => {
     .post(
       checkIsUnauthorized,
       signInValidator,
-      signIn,
+      signInController,
     );
 
   router.route('/refresh')
