@@ -11,7 +11,6 @@ const errors = {
   PASSWORD_SHOULD_BE_FROM_SIX_TO_TWENTY_SYMBOLS: 'passwordShouldBeFrom6To20Symbols',
   UNAUTHORIZED: 'unauthorized',
   USER_WITH_EMAIL_DOES_NOT_EXISTS: 'userWithEmailDoesNotExists',
-  USER_WITH_MAIL_DOES_NOT_EXISTS: 'userWithMailDoesNotExists',
   VALID_EMAIL_SHOULD_BE_PROVIDED: 'validEmailShouldBeProvided',
   VALIDATION_ERROR: 'validationError',
 };

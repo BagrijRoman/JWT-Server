@@ -1,6 +1,6 @@
 import express from 'express';
 
-import signUp from './signUp';
+import { signUpController } from './signUp';
 import { signInController } from './signIn';
 import refreshToken from './refreshToken';
 import changePassword from './changePassword';
@@ -26,7 +26,7 @@ const setupAuthRoutes = (router) => {
     .post(
       checkIsUnauthorized,
       signUpValidator,
-      signUp
+      signUpController,
     );
 
   router.route('/sign-in')

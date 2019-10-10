@@ -12,13 +12,11 @@ usersSchema.statics.addNewUser = async function (user) {
     name,
     email,
     password,
-    address,
-    phone,
   } = user;
 
   const passwordHash = await encryptionHelper.hashPassword(password);
 
-  return this.create({ name, email, password: passwordHash, address, phone });
+  return this.create({ name, email, password: passwordHash, });
 };
 
 export default model('users', usersSchema);
