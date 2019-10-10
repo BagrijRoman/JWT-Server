@@ -8,15 +8,21 @@ usersSchema.statics.findUserByEmail = async function (email) {
 };
 
 usersSchema.statics.addNewUser = async function (user) {
-  const {
-    name,
-    email,
-    password,
-  } = user;
-
+  const { name, email, password } = user;
   const passwordHash = await encryptionHelper.hashPassword(password);
 
   return this.create({ name, email, password: passwordHash, });
 };
+
+usersSchema.statics.setUserPassword = async (_id, password) => {
+  const passwordHash = await encryptionHelper.hashPassword(password);
+
+  return this.findByIdAndUpdate(
+    _id,
+    { password: passwordHash },
+    { new: true, useFindAndModify: false }
+  );
+};
+
 
 export default model('users', usersSchema);

@@ -1,3 +1,7 @@
+
+// todo move this functionnality to encryption helper
+
+
 const jwt = require('jsonwebtoken');
 
 const {

@@ -3,7 +3,7 @@ import express from 'express';
 import { signUpController } from './signUp';
 import { signInController } from './signIn';
 import { refreshTokenController } from './refreshToken';
-import changePassword from './changePassword';
+import { changePasswordController } from './changePassword';
 import resetPasswordRequest from './restePasswordRequest';
 import resetPassword from './resetPassword';
 
@@ -46,7 +46,7 @@ const setupAuthRoutes = (router) => {
     .post(
       checkAccessToken,
       changePasswordValidator,
-      changePassword,
+      changePasswordController,
     );
 
   router.route('/reset-password-request')
