@@ -1,10 +1,13 @@
 import { responseHelper, mailService } from '../../services';
-import { logger } from '../../utils';
 import { ResetPasswordRequests } from '../../models';
-import { generateResetPasswordToken, generateResetPasswordLink } from './utils';
 import { messages } from '../../const';
+import { logger } from '../../utils';
 
-const resetPasswordRequestController = async (req, res, next) => {
+
+// todo move this functionnality to encryption helper
+import { generateResetPasswordToken, generateResetPasswordLink } from './utils';
+
+export const resetPasswordRequestController = async (req, res, next) => {
   try {
     const { _id: userId, email } = req.user;
     const modifiedRecordsCount = await ResetPasswordRequests.disableAllUserRequests(userId);
@@ -20,5 +23,3 @@ const resetPasswordRequestController = async (req, res, next) => {
     next(err);
   }
 };
-
-export default resetPasswordRequestController;

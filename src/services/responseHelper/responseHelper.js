@@ -23,9 +23,11 @@ class ResponseHelper {
     this.encryptionHelper = encryptionHelper;
   }
 
-  success = (res) => {
-
-  };
+  success = (res, msgKey = messages.SUCCESS, data = {}) => res.status(httpStatus.OK).json({
+    success: true,
+    data,
+    msgKey,
+  });
 
   sendTokens = (res, userData) => {
     const { _id, email } = userData;
