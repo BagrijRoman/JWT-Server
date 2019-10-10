@@ -19,8 +19,8 @@ To run app on production `.env.production` file should be configured.
 
 
 todo
-- move reset password tokens functionality to encryption helper
-- add usage of encryption module for refresh token
+- finish refactoring of midlewares
+- finish reset password related functionality
 - add google auth
 - add facebook auth
 - add linkedin auth
