@@ -7,7 +7,7 @@ import {
   rePasswordValidator,
 } from './commonValidatorFns';
 
-const signUpValidator = celebrate({
+export const signUpValidator = celebrate({
   body: Joi.object().keys({
     name: nameValidator,
     email: emailValidator,
@@ -15,5 +15,3 @@ const signUpValidator = celebrate({
     rePassword: rePasswordValidator,
   }),
 });
-
-export default signUpValidator;
