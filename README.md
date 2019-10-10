@@ -19,6 +19,7 @@ To run app on production `.env.production` file should be configured.
 
 
 todo
+- add addNewUser usage for sign up controller
 - update user model methods - daa crete user with usage of encryption module
 - add usage of encryption module for sign in
 - add usage of encryption module for refresh token
