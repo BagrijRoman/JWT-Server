@@ -4,7 +4,7 @@ import { signUpController } from './signUp';
 import { signInController } from './signIn';
 import { refreshTokenController } from './refreshToken';
 import { changePasswordController } from './changePassword';
-import resetPasswordRequest from './restePasswordRequest';
+import { resetPasswordRequestController } from './restePasswordRequest';
 import resetPassword from './resetPassword';
 
 import {
@@ -53,10 +53,7 @@ const setupAuthRoutes = (router) => {
     .post(
       resetPasswordRequestValidator,
       checkUserEmail,
-
-      // check existing reset password tokens
-      // generate reset password token
-      resetPasswordRequest,
+      resetPasswordRequestController,
     );
 
   router.route('/reset-password')

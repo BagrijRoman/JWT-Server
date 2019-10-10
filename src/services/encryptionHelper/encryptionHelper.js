@@ -8,12 +8,18 @@ class EncryptionHelper {
       accessTokenSecret,
       refreshTokenLifetime,
       refreshTokenSecret,
+      resetPasswordTokenSecret,
+      resetPasswordTokenLifetime,
+      clientResetPasswordPageUrl,
     } = config;
 
     this.accessTokenLifetime = accessTokenLifetime;
     this.accessTokenSecret = accessTokenSecret;
     this.refreshTokenLifetime = refreshTokenLifetime;
     this.refreshTokenSecret = refreshTokenSecret;
+    this.resetPasswordTokenSecret = resetPasswordTokenSecret;
+    this.resetPasswordTokenLifetime = resetPasswordTokenLifetime;
+    this.clientResetPasswordPageUrl = clientResetPasswordPageUrl;
   }
 
   __validateToken = (token, secret) => {
@@ -47,6 +53,14 @@ class EncryptionHelper {
       { expiresIn: this.refreshTokenLifetime }
     ),
   });
+
+  generateResetPasswordToken = (userId) => jwt.sign(
+    { userId },
+    this.resetPasswordTokenSecret,
+    { expiresIn: this.resetPasswordTokenLifetime }
+  );
+
+  generateResetPasswordLink = (token) => `${this.clientResetPasswordPageUrl}?token=${token}`;
 }
 
 export { EncryptionHelper };

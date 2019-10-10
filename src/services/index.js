@@ -7,6 +7,9 @@ const {
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_LIFETIME,
   REFRESH_TOKEN_SECRET,
+  RESET_PASSWORD_TOKEN_SECRET,
+  RESET_PASSWORD_TOKEN_LIFETIME,
+  CLIENT_RESET_PASSWORD_PAGE_URL,
 } = process.env;
 
 
@@ -16,6 +19,9 @@ const encryptionHelper = new EncryptionHelperClass({
   accessTokenSecret: ACCESS_TOKEN_SECRET,
   refreshTokenLifetime: REFRESH_TOKEN_LIFETIME,
   refreshTokenSecret: REFRESH_TOKEN_SECRET,
+  resetPasswordTokenSecret: RESET_PASSWORD_TOKEN_SECRET,
+  resetPasswordTokenLifetime: RESET_PASSWORD_TOKEN_LIFETIME,
+  clientResetPasswordPageUrl: CLIENT_RESET_PASSWORD_PAGE_URL,
 });
 const responseHelper = new ResponseHelperClass({
   encryptionHelper,
