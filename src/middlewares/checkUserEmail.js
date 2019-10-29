@@ -19,7 +19,8 @@ const checkUserEmail = async (req, res, next) => {
       );
     }
 
-    req.user = userRec;
+    req.user = userRec.toObject();
+
     return next();
   } catch (err) {
     logger.error(`checkUserEmail:: error details ${err.toString()}`);
