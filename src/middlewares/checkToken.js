@@ -1,8 +1,8 @@
-import { responseHelper } from '../../services';
-import { Users } from '../../models';
-import { logger } from '../../utils';
-import { validateAccessToken, validateRefreshToken } from './utils';
-import { tokenType as tokenTypes } from '../../const';
+import { responseHelper } from '../services';
+import { Users } from '../models';
+import { logger } from '../utils';
+import { tokenType as tokenTypes } from '../const';
+import { encryptionHelper } from '../services';
 
 /*
 * checkAuth  middleware
@@ -14,8 +14,10 @@ import { tokenType as tokenTypes } from '../../const';
 
 const checkToken = tokenType => async (req, res, next) => {
   try {
-    const validationFn = tokenType === tokenTypes.ACCESS ? validateAccessToken : validateRefreshToken;
-    const decoded = validationFn(req.header('Authorization'));
+    const token = req.header('Authorization');
+    const decoded = tokenType === tokenTypes.ACCESS
+      ? encryptionHelper.validateAccessToken(token)
+      : encryptionHelper.validateRefreshToken(token);
 
     if (!decoded || !decoded._id) {
       logger.info('Unauthorized');
