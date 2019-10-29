@@ -34,9 +34,13 @@ class ResponseHelper {
     const userDataNormalized = {...userData}.delete('password');
 
     const tokens = this.encryptionHelper.generateTokens({ _id: _id.toString(), email });
-    res.status(httpStatus.OK).json({
-      data: userDataNormalized,
-      ...tokens,
+
+    return res.status(httpStatus.OK).json({
+      success: true,
+      data: {
+        ...tokens,
+        userDataNormalized,
+      },
     });
   };
 

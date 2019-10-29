@@ -7,8 +7,6 @@ const emailValidator = Joi.string().email().required().error(() => errors.VALID_
 const passwordValidator = Joi.string().min(6).max(20).required().error(() => errors.PASSWORD_SHOULD_BE_FROM_SIX_TO_TWENTY_SYMBOLS);
 const rePasswordValidator = Joi.any().valid(Joi.ref('password')).required().error(() => errors.PASSWORD_CONFIRMATION_SHOULD_MATCH);
 
-
-
 export {
   nameValidator,
   emailValidator,
