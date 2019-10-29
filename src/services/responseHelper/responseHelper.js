@@ -31,15 +31,15 @@ class ResponseHelper {
 
   sendTokens = (res, userData) => {
     const { _id, email } = userData;
-    const userDataNormalized = {...userData}.delete('password');
-
     const tokens = this.encryptionHelper.generateTokens({ _id: _id.toString(), email });
+    const userDataNormalized = { ...userData };
+    delete userDataNormalized.password;
 
     return res.status(httpStatus.OK).json({
       success: true,
       data: {
         ...tokens,
-        userDataNormalized,
+        user: userDataNormalized,
       },
     });
   };

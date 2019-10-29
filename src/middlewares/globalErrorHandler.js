@@ -2,8 +2,9 @@ import { logger } from '../utils';
 import { responseHelper } from '../services';
 
 const globalErrorHandler = (err, req, res, next) => {
-  logger.error(`globalErrorHandler  ${err.toString()}`);
-  return responseHelper.internalServerError(res, { err });
+  const errDescription = err.toString();
+  logger.error(`globalErrorHandler  ${errDescription}`);
+  return responseHelper.internalServerError(res, { err: errDescription });
 };
 
 export default globalErrorHandler;
