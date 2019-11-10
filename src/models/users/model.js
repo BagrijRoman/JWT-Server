@@ -14,7 +14,7 @@ usersSchema.statics.addNewUser = async function (user) {
   return this.create({ name, email, password: passwordHash, });
 };
 
-usersSchema.statics.setUserPassword = async (_id, password) => {
+usersSchema.statics.setUserPassword = async function (_id, password) {
   const passwordHash = await encryptionHelper.hashPassword(password);
 
   return this.findByIdAndUpdate(
