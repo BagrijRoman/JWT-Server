@@ -3,8 +3,6 @@ import { ResetPasswordRequests } from '../../models';
 import { messages } from '../../const';
 import { logger } from '../../utils';
 
-// todo test out this functionality
-
 export const resetPasswordRequestController = async (req, res, next) => {
   try {
     const { _id: userId, email } = req.user;
